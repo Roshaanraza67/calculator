@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.app {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* 3D Scene */
+.scene {
+  perspective: 1200px;
+}
+
+.calculator {
+  width: 320px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(255,255,255,0.1);
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* Display */
+.display {
+  height: 60px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 24px;
+  text-align: right;
+  margin-bottom: 15px;
+  box-shadow: inset 5px 5px 10px #000,
+              inset -5px -5px 10px rgba(255,255,255,0.1);
+}
+
+/* Buttons */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #1e1e1e, #121212);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px #000,
+              -4px -4px 8px rgba(255,255,255,0.08);
+  transition: all 0.15s ease;
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 2px 2px 6px #000;
+}
+
+button:hover {
+  background: linear-gradient(145deg, #2a2a2a, #151515);
+}
+
+.equal {
+  grid-column: span 4;
+  background: linear-gradient(145deg, #00c6ff, #0072ff);
+  font-size: 20px;
+}
+
+/* History Panel */
+.history {
+  width: 220px;
+  max-height: 420px;
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(15px);
+  overflow-y: auto;
+}
+
+.history h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history li {
+  font-size: 14px;
+  padding: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .history {
+    width: 100%;
+    max-width: 320px;
+  }
+}
