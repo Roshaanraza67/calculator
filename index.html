@@ -14,6 +14,11 @@
       <div class="display" id="display">0</div>
 
       <div class="buttons">
+        <button data-value="Math.sqrt(">√</button>
+        <button data-value="Math.log10(">log</button>
+        <button data-value="Math.log(">ln</button>
+        <button data-value="factorial(">x!</button>
+
         <button class="func" data-value="clear">AC</button>
         <button class="func" data-value="del">DEL</button>
         <button data-value="(">(</button>
@@ -50,7 +55,10 @@
   </div>
 
   <div class="history">
-    <h3>History</h3>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>History</h3>
+        <button id="clearHistory" style="padding: 5px; font-size: 12px; background: #c0392b; width: auto;">Clear</button>
+    </div>
     <ul id="historyList"></ul>
   </div>
 </div>
