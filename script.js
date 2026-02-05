@@ -2,6 +2,7 @@ const display = document.getElementById("display");
 const buttons = document.querySelectorAll("button");
 const historyList = document.getElementById("historyList");
 const calculator = document.getElementById("calc");
+const clearHistoryBtn = document.getElementById("clearHistory");
 
 /* Button Click Logic */
 buttons.forEach(btn => {
@@ -33,14 +34,26 @@ function handleInput(value) {
   }
 }
 
+/* Factorial Logic */
+function factorial(n) {
+    if (n < 0) return "Error";
+    if (n === 0 || n === 1) return 1;
+    let res = 1;
+    for (let i = 2; i <= n; i++) res *= i;
+    return res;
+}
+
 /* Calculate */
 function calculate() {
   try {
-    const expression = display.innerText
+    let expression = display.innerText
       .replace(/sin/g, "Math.sin")
       .replace(/cos/g, "Math.cos")
-      .replace(/tan/g, "Math.tan");
+      .replace(/tan/g, "Math.tan")
+      .replace(/π/g, "Math.PI");
 
+    // The eval will handle Math functions. For factorial, 
+    // it requires the user to wrap the number in factorial()
     const result = eval(expression);
     addHistory(display.innerText, result);
     display.innerText = result;
@@ -55,6 +68,11 @@ function addHistory(expr, res) {
   li.textContent = `${expr} = ${res}`;
   historyList.prepend(li);
 }
+
+/* Clear History */
+clearHistoryBtn.addEventListener("click", () => {
+    historyList.innerHTML = "";
+});
 
 /* Keyboard Support */
 document.addEventListener("keydown", e => {
@@ -71,7 +89,7 @@ document.addEventListener("keydown", e => {
   }
 });
 
-/* Mouse-based 3D Tilt */
+/* ORIGINAL 3D TILT LOGIC - UNCHANGED */
 document.addEventListener("mousemove", e => {
   const rect = calculator.getBoundingClientRect();
   const x = e.clientX - rect.left - rect.width / 2;
